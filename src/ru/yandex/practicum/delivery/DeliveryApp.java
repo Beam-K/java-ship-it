@@ -25,7 +25,9 @@ public class DeliveryApp {
                     sendParcels();
                     break;
                 case "3":
-                    calculateCosts();
+                    calculateCosts(
+                            
+                    );
                     break;
                 case "4":
                     displayReportStatus();
@@ -106,8 +108,20 @@ public class DeliveryApp {
     private static void calculateCosts() {
         // Посчитать общую стоимость всех доставок и вывести на экран
 
+        int sumDeliveryCost = 0;
+        if (allParcels != null && !allParcels.isEmpty()) {
+            for (Parcel parcel : allParcels) {
+               sumDeliveryCost += parcel.calculateDeliveryCost();
+
+            }
+        } else {
+            System.out.println("У вас нет посылок");
+        }
+        System.out.println("Общая сумма доставки - " + sumDeliveryCost);
+    }
+
     private static void displayReportStatus() {
-        if (allParcels!= null && !allParcels.isEmpty()) {
+        if (allParcels != null && !allParcels.isEmpty()) {
             for (Parcel parcel : allParcels) {
                 if (parcel instanceof FragileParcel) {
                     for (FragileParcel fragileParcel : trackableItems) {
@@ -119,10 +133,10 @@ public class DeliveryApp {
                     System.out.println("У вас нет посылки, которая поддерживает трекинг");
                 }
             }
-        }else {
+        } else {
             System.out.println("У вас нет отправленных посылок");
         }
     }
-
 }
+
 
