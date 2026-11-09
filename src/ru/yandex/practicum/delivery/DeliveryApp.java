@@ -8,6 +8,8 @@ public class DeliveryApp {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Parcel> allParcels = new ArrayList<>();
+    private static List<FragileParcel> trackableItems = new ArrayList<>();
+
 
     public static void main(String[] args) {
         boolean running = true;
@@ -16,16 +18,19 @@ public class DeliveryApp {
             String choice = (scanner.nextLine());
 
             switch (choice) {
-                case 1:
+                case "1":
                     addParcel();
                     break;
-                case 2:
+                case "2":
                     sendParcels();
                     break;
-                case 3:
+                case "3":
                     calculateCosts();
                     break;
-                case 0:
+                case "4":
+                    displayReportStatus();
+                    break;
+                case "0":
                     running = false;
                     break;
                 default:
@@ -39,13 +44,55 @@ public class DeliveryApp {
         System.out.println("1 — Добавить посылку");
         System.out.println("2 — Отправить все посылки");
         System.out.println("3 — Посчитать стоимость доставки");
+        System.out.println("4 — Узнать статус хрупкой посылки");
         System.out.println("0 — Завершить");
     }
 
-    // реализуйте методы ниже
-
     private static void addParcel() {
         // Подсказка: спросите тип посылки и необходимые поля, создайте объект и добавьте в allParcels
+        System.out.println("Введите содержимое поссылки");
+        String userInputDescription = scanner.nextLine();
+
+        System.out.println("Введите вес поссылки");
+        int userInputWight = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Введите адрес отправки");
+        String userInputDeliveryAddress = scanner.nextLine();
+
+        System.out.println("Введите день отправки");
+        int userInputSendDay = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Выберите тип посылки:");
+        System.out.println("1 — Стандартная посылка");
+        System.out.println("2 — Скоропортящаяся посылка");
+        System.out.println("3 — Хрупкая посылка");
+        int typeParcel = Integer.parseInt(scanner.nextLine());
+
+        switch (typeParcel) {
+            case 1:
+                StandardParcel standardParcel = new StandardParcel(userInputDescription, userInputWight,
+                        userInputDeliveryAddress, userInputSendDay);
+                allParcels.add(standardParcel);
+                break;
+            case 2:
+                System.out.println("Введите срок годности посылки");
+                int userInputtTmeToLive = Integer.parseInt(scanner.nextLine());
+
+                PerishableParcel perishableParcel = new PerishableParcel(userInputDescription, userInputWight,
+                        userInputDeliveryAddress, userInputSendDay, userInputtTmeToLive);
+                allParcels.add(perishableParcel);
+                break;
+            case 3:
+                FragileParcel fragileParcel = new FragileParcel(userInputDescription, userInputWight,
+                        userInputDeliveryAddress, userInputSendDay);
+                allParcels.add(fragileParcel);
+                trackableItems.add(fragileParcel);
+
+                break;
+
+            default:
+                System.out.println("Неверный выбор.");
+        }
     }
 
     private static void sendParcels() {
