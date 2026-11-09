@@ -14,5 +14,12 @@ public abstract class Parcel {
         this.sendDay = sendDay;
     }
 
-    
+    public void packageItem(){
+        System.out.println("Посылка "+ description + " упакована");
+    }
+    public void deliver(){
+        System.out.println("Посылка "+ description + " доставлена по адресу " + deliveryAddress);
+    }
+    public abstract int calculateDeliveryCost();
+
 }
