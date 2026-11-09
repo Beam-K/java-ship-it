@@ -58,6 +58,23 @@ public class DeliveryApp {
 
     private static void calculateCosts() {
         // Посчитать общую стоимость всех доставок и вывести на экран
+
+    private static void displayReportStatus() {
+        if (allParcels!= null && !allParcels.isEmpty()) {
+            for (Parcel parcel : allParcels) {
+                if (parcel instanceof FragileParcel) {
+                    for (FragileParcel fragileParcel : trackableItems) {
+                        System.out.println("Введите новое месторасположения посылки");
+                        String userInputNewLocation = scanner.nextLine();
+                        fragileParcel.reportStatus(userInputNewLocation);
+                    }
+                } else {
+                    System.out.println("У вас нет посылки, которая поддерживает трекинг");
+                }
+            }
+        }else {
+            System.out.println("У вас нет отправленных посылок");
+        }
     }
 
 }
