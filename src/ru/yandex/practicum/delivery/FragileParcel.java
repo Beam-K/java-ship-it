@@ -10,4 +10,9 @@ public class FragileParcel extends Parcel{
     public int calculateDeliveryCost() {
         return FRAGILE_PRICE_PER_KG * weight;
     }
+    @Override
+    public void packageItem(){
+        System.out.println("Посылка "+ description + " обёрнута в защитную плёнку");
+        System.out.println("Посылка "+ description + " упакована");
+    }
 }
