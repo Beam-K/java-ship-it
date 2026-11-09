@@ -50,6 +50,10 @@ public class DeliveryApp {
 
     private static void sendParcels() {
         // Пройти по allParcels, вызвать packageItem() и deliver()
+        for (Parcel parcel : allParcels) {
+            parcel.packageItem();
+            parcel.deliver();
+        }
     }
 
     private static void calculateCosts() {
