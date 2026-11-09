@@ -13,7 +13,7 @@ public class DeliveryApp {
         boolean running = true;
         while (running) {
             showMenu();
-            int choice = Integer.parseInt(scanner.nextLine());
+            String choice = (scanner.nextLine());
 
             switch (choice) {
                 case 1:
