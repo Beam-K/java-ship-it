@@ -10,6 +10,15 @@ public class PerishableParcel extends Parcel {
         super(description, weight, deliveryAddress, sendDay);
         this.timeToLive = timeToLive;
     }
+
+    public boolean isExpired(int currentDay) {
+
+        if((sendDay + timeToLive) >= currentDay){
+            return false;
+        }else {
+            return true;
+        }
+    }
     @Override
     public int calculateDeliveryCost() {
         return PERISHABLE_PRICE_PER_KG * weight;
