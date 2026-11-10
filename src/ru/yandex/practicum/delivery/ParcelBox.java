@@ -10,20 +10,9 @@ public class ParcelBox<T extends Parcel> {
 
     public ParcelBox(int maxWeightBox) {
         this.maxWeightBox = maxWeightBox;
-
     }
     public void addParcel(T parcel) {
-        if (currentWeightBox >= maxWeightBox || (currentWeightBox += parcel.weight) > maxWeightBox){
-            System.out.println("Коробка переполнена");
-        }else {
-            ParcelBoxes.add(parcel);
-            currentWeightBox += parcel.weight;
-            hasParcels = false;
-        }
-    }
-
-    public void addParcel(T parcel, int currentWeightBox) {
-        if (currentWeightBox >= maxWeightBox || (currentWeightBox += parcel.weight) > maxWeightBox){
+        if (currentWeightBox + parcel.weight > maxWeightBox) {
             System.out.println("Коробка переполнена");
         }else {
             ParcelBoxes.add(parcel);
@@ -37,5 +26,8 @@ public class ParcelBox<T extends Parcel> {
             System.out.println(" Содержимое коробки - " + parcel.description);
             System.out.println(parcel);
         }
+    }
+    public int getParcelsCount() {
+        return ParcelBoxes.size();
     }
 }
