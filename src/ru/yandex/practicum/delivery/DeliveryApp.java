@@ -10,6 +10,9 @@ public class DeliveryApp {
     private static List<Parcel> allParcels = new ArrayList<>();
     private static List<FragileParcel> trackableItems = new ArrayList<>();
 
+    static ParcelBox<StandardParcel> standardParcelBox = new ParcelBox<StandardParcel>(100);
+    static ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<FragileParcel>(20);
+    static ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<PerishableParcel>(1000);
 
     public static void main(String[] args) {
         boolean running = true;
@@ -31,6 +34,9 @@ public class DeliveryApp {
                     break;
                 case "4":
                     displayReportStatus();
+                    break;
+                case "5":
+                    displayAllParcelsInBox();
                     break;
                 case "0":
                     running = false;
@@ -123,22 +129,49 @@ public class DeliveryApp {
     }
 
     private static void displayReportStatus() {
-        if (allParcels != null && !allParcels.isEmpty()) {
-            for (Parcel parcel : allParcels) {
-                if (parcel instanceof FragileParcel) {
-                    for (FragileParcel fragileParcel : trackableItems) {
-                        System.out.println("Введите новое месторасположения посылки");
-                        String userInputNewLocation = scanner.nextLine();
-                        fragileParcel.reportStatus(userInputNewLocation);
-                    }
-                } else {
-                    System.out.println("У вас нет посылки, которая поддерживает трекинг");
-                }
+        if (trackableItems != null && !trackableItems.isEmpty()) {
+            for (FragileParcel fragileParcel : trackableItems) {
+                System.out.println("Введите новое месторасположения посылки");
+                String userInputNewLocation = scanner.nextLine();
+                fragileParcel.reportStatus(userInputNewLocation);
             }
         } else {
-            System.out.println("У вас нет отправленных посылок");
+            System.out.println("У вас нет отслеживаемых посылок");
+        }
+    }
+
+    private static void displayAllParcelsInBox() {
+        System.out.println("Выберите тип коробки:");
+        System.out.println("1 — Стандартные посылки");
+        System.out.println("2 — Скоропортящиеся посылки");
+        System.out.println("3 — Хрупкие посылки");
+
+        int typeBox = Integer.parseInt(scanner.nextLine());
+
+        switch (typeBox) {
+            case 1:
+                if (standardParcelBox.hasParcels) {
+                    standardParcelBox.getAllParcels();
+                } else {
+                    System.out.println("Коробка пуста");
+                }
+                break;
+            case 2:
+                if (perishableParcelBox.hasParcels) {
+                    perishableParcelBox.getAllParcels();
+                } else {
+                    System.out.println("Коробка пуста");
+                }
+                break;
+            case 3:
+                if (fragileParcelBox.hasParcels) {
+                    fragileParcelBox.getAllParcels();
+                } else {
+                    System.out.println("Коробка пуста");
+                }
+                break;
+            default:
+                System.out.println("Необрабатываемый ввод.");
         }
     }
 }
-
-
