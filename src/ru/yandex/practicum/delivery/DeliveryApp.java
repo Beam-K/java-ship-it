@@ -10,9 +10,9 @@ public class DeliveryApp {
     private static List<Parcel> allParcels = new ArrayList<>();
     private static List<FragileParcel> trackableItems = new ArrayList<>();
 
-    static ParcelBox<StandardParcel> standardParcelBox = new ParcelBox<StandardParcel>(100);
-    static ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<FragileParcel>(20);
-    static ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<PerishableParcel>(1000);
+    static ParcelBox<StandardParcel> standardParcelBox = new ParcelBox<StandardParcel>(5000);
+    static ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<FragileParcel>(2000);
+    static ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<PerishableParcel>(10000);
 
     public static void main(String[] args) {
         boolean running = true;
@@ -28,9 +28,7 @@ public class DeliveryApp {
                     sendParcels();
                     break;
                 case "3":
-                    calculateCosts(
-                            
-                    );
+                    calculateCosts();
                     break;
                 case "4":
                     displayReportStatus();
@@ -53,11 +51,11 @@ public class DeliveryApp {
         System.out.println("2 — Отправить все посылки");
         System.out.println("3 — Посчитать стоимость доставки");
         System.out.println("4 — Узнать статус хрупкой посылки");
+        System.out.println("5 — Показать содержимое коробки");
         System.out.println("0 — Завершить");
     }
 
     private static void addParcel() {
-        // Подсказка: спросите тип посылки и необходимые поля, создайте объект и добавьте в allParcels
         System.out.println("Введите содержимое поссылки");
         String userInputDescription = scanner.nextLine();
 
@@ -74,6 +72,7 @@ public class DeliveryApp {
         System.out.println("1 — Стандартная посылка");
         System.out.println("2 — Скоропортящаяся посылка");
         System.out.println("3 — Хрупкая посылка");
+
         int typeParcel = Integer.parseInt(scanner.nextLine());
 
         switch (typeParcel) {
@@ -97,7 +96,7 @@ public class DeliveryApp {
                         userInputDeliveryAddress, userInputSendDay);
                 allParcels.add(fragileParcel);
                 trackableItems.add(fragileParcel);
-
+                fragileParcelBox.addParcel(fragileParcel);
                 break;
 
             default:
@@ -106,7 +105,6 @@ public class DeliveryApp {
     }
 
     private static void sendParcels() {
-        // Пройти по allParcels, вызвать packageItem() и deliver()
         for (Parcel parcel : allParcels) {
             parcel.packageItem();
             parcel.deliver();
@@ -114,13 +112,10 @@ public class DeliveryApp {
     }
 
     private static void calculateCosts() {
-        // Посчитать общую стоимость всех доставок и вывести на экран
-
         int sumDeliveryCost = 0;
         if (allParcels != null && !allParcels.isEmpty()) {
             for (Parcel parcel : allParcels) {
-               sumDeliveryCost += parcel.calculateDeliveryCost();
-
+                sumDeliveryCost += parcel.calculateDeliveryCost();
             }
         } else {
             System.out.println("У вас нет посылок");

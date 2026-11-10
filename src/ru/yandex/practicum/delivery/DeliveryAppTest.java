@@ -59,7 +59,8 @@ public class DeliveryAppTest {
 
         standardParcelBoxTest.addParcel(standardParcelTest1);
         standardParcelBoxTest.addParcel(standardParcelTest2);
-        Assertions.assertEquals(2, standardParcelBoxTest.getParcelsCount());    }
+        Assertions.assertEquals(2, standardParcelBoxTest.getParcelsCount());
+    }
 
     @Test
     public void shouldNotAddParcelWhenWeightExceedsLimitByOne() {
