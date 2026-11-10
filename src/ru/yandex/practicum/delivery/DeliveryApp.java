@@ -75,14 +75,16 @@ public class DeliveryApp {
                 StandardParcel standardParcel = new StandardParcel(userInputDescription, userInputWight,
                         userInputDeliveryAddress, userInputSendDay);
                 allParcels.add(standardParcel);
+                standardParcelBox.addParcel(standardParcel);
                 break;
             case 2:
                 System.out.println("Введите срок годности посылки");
-                int userInputtTmeToLive = Integer.parseInt(scanner.nextLine());
+                int userInputTmeToLive = Integer.parseInt(scanner.nextLine());
 
                 PerishableParcel perishableParcel = new PerishableParcel(userInputDescription, userInputWight,
-                        userInputDeliveryAddress, userInputSendDay, userInputtTmeToLive);
+                        userInputDeliveryAddress, userInputSendDay, userInputTmeToLive);
                 allParcels.add(perishableParcel);
+                perishableParcelBox.addParcel(perishableParcel);
                 break;
             case 3:
                 FragileParcel fragileParcel = new FragileParcel(userInputDescription, userInputWight,
