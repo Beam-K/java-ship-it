@@ -5,27 +5,29 @@ import org.junit.jupiter.api.Assertions.*;
 
 public class DeliveryAppTest {
 
-
     @Test
-    public void deliveryCostForStandardParcelShouldBe400(){
-        StandardParcel standardParcelTest = new StandardParcel("Куртка", 200, "Томск, улица Лебедева, 39", 12 );
+    public void deliveryCostForStandardParcelShouldBe400() {
+        StandardParcel standardParcelTest = new StandardParcel("Куртка", 200, "Томск, улица Лебедева, 39", 12);
 
-        Assertions.assertEquals(400,standardParcelTest.calculateDeliveryCost(), "Неправильно посчитана сумма доставки для стандартной поссылки");
+        Assertions.assertEquals(400, standardParcelTest.calculateDeliveryCost(), "Неправильно посчитана сумма доставки для стандартной поссылки");
     }
+
     @Test
-    public void deliveryCostForFragileParcelShouldBe80(){
+    public void deliveryCostForFragileParcelShouldBe80() {
         FragileParcel fragileParcelTest = new FragileParcel("Статуетка", 20, "Томск, улица Гоголя, 27", 12);
 
-        Assertions.assertEquals(80,fragileParcelTest.calculateDeliveryCost(), "Неправильно посчитана сумма доставки для хрупкой поссылки");
+        Assertions.assertEquals(80, fragileParcelTest.calculateDeliveryCost(), "Неправильно посчитана сумма доставки для хрупкой поссылки");
     }
+
     @Test
-    public void deliveryCostForPerishableParcelShouldBe3000(){
+    public void deliveryCostForPerishableParcelShouldBe3000() {
         PerishableParcel perishableParcelTest = new PerishableParcel("Бабушкины котлеты", 1000, "Кемерово, улица Веры Волошиной, 54", 12, 5);
 
-        Assertions.assertEquals(3000,perishableParcelTest.calculateDeliveryCost(), "Неправильно посчитана сумма доставки для скоропортящейся поссылки");
+        Assertions.assertEquals(3000, perishableParcelTest.calculateDeliveryCost(), "Неправильно посчитана сумма доставки для скоропортящейся поссылки");
     }
+
     @Test
-    public void shouldBeGoBadAfterExpirationTimeToLive(){
+    public void shouldBeGoBadAfterExpirationTimeToLive() {
         PerishableParcel perishableParcelTest =
                 new PerishableParcel("Бабушкины котлеты", 1000, "Веры Волошиной, 54", 1, 5);
 
@@ -33,7 +35,7 @@ public class DeliveryAppTest {
     }
 
     @Test
-    public void shouldBeGoNotSpoilBeforeExpirationTimeToLive(){
+    public void shouldBeGoNotSpoilBeforeExpirationTimeToLive() {
         PerishableParcel perishableParcelTest =
                 new PerishableParcel("Бабушкины котлеты", 1000, "Веры Волошиной, 54", 1, 5);
 
