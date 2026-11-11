@@ -56,11 +56,18 @@ public class DeliveryApp {
     }
 
     private static void addParcel() {
-        System.out.println("Введите содержимое поссылки");
+        System.out.println("Введите содержимое посылки");
         String userInputDescription = scanner.nextLine();
 
-        System.out.println("Введите вес поссылки");
-        int userInputWight = Integer.parseInt(scanner.nextLine());
+        System.out.println("Введите вес посылки");
+        int userInputWeight = 0;
+        // try/catch, к слову, мы будем проходить только в середине седьмого спринта т.е. через 3 недели
+        try {
+            userInputWeight = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Введите вес цифрами");
+            return;
+        }
 
         System.out.println("Введите адрес отправки");
         String userInputDeliveryAddress = scanner.nextLine();
@@ -73,26 +80,26 @@ public class DeliveryApp {
         System.out.println("2 — Скоропортящаяся посылка");
         System.out.println("3 — Хрупкая посылка");
 
-        int typeParcel = Integer.parseInt(scanner.nextLine());
+        String typeParcel = scanner.nextLine(); //Здесь
 
         switch (typeParcel) {
-            case 1:
-                StandardParcel standardParcel = new StandardParcel(userInputDescription, userInputWight,
+            case "1":
+                StandardParcel standardParcel = new StandardParcel(userInputDescription, userInputWeight,
                         userInputDeliveryAddress, userInputSendDay);
                 allParcels.add(standardParcel);
                 standardParcelBox.addParcel(standardParcel);
                 break;
-            case 2:
+            case "2":
                 System.out.println("Введите срок годности посылки");
-                int userInputTmeToLive = Integer.parseInt(scanner.nextLine());
+                int userInputTimeToLive = Integer.parseInt(scanner.nextLine());
 
-                PerishableParcel perishableParcel = new PerishableParcel(userInputDescription, userInputWight,
-                        userInputDeliveryAddress, userInputSendDay, userInputTmeToLive);
+                PerishableParcel perishableParcel = new PerishableParcel(userInputDescription, userInputWeight,
+                        userInputDeliveryAddress, userInputSendDay, userInputTimeToLive);
                 allParcels.add(perishableParcel);
                 perishableParcelBox.addParcel(perishableParcel);
                 break;
-            case 3:
-                FragileParcel fragileParcel = new FragileParcel(userInputDescription, userInputWight,
+            case "3":
+                FragileParcel fragileParcel = new FragileParcel(userInputDescription, userInputWeight,
                         userInputDeliveryAddress, userInputSendDay);
                 allParcels.add(fragileParcel);
                 trackableItems.add(fragileParcel);
