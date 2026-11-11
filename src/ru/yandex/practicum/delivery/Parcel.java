@@ -1,10 +1,11 @@
 package ru.yandex.practicum.delivery;
 
 public abstract class Parcel {
-    String description;
-    int weight;
-    String deliveryAddress;
-    int sendDay;
+
+    protected String description;
+    protected int weight;
+    protected String deliveryAddress;
+    protected int sendDay;
 
     public Parcel(String description, int weight, String deliveryAddress, int sendDay) {
         this.description = description;
@@ -21,7 +22,11 @@ public abstract class Parcel {
         System.out.println("Посылка " + description + " доставлена по адресу " + deliveryAddress);
     }
 
-    public abstract int calculateDeliveryCost();
+    @Override
+    public String toString() {
+        return "Посылка: " + description + ", вес: " + weight + "г, адрес: " + deliveryAddress + "дата отправки: " + sendDay;
+    }
+
     public int calculateDeliveryCost(){
         return getBaseCost() * weight;
     };

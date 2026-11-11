@@ -4,7 +4,7 @@ package ru.yandex.practicum.delivery;
 public class PerishableParcel extends Parcel {
     private static final int PERISHABLE_PRICE_PER_KG = 3;
 
-    int timeToLive;
+    private int timeToLive;
 
     public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay, int timeToLive) {
         super(description, weight, deliveryAddress, sendDay);
@@ -13,16 +13,15 @@ public class PerishableParcel extends Parcel {
 
     public boolean isExpired(int currentDay) {
 
-        if ((sendDay + timeToLive) >= currentDay) {
-            return false;
-        } else {
-            return true;
-        }
+        return currentDay >= sendDay + timeToLive;
     }
 
     @Override
     public int getBaseCost(){
         return PERISHABLE_PRICE_PER_KG;
     }
+    @Override
+    public String toString() {
+        return "Посылка: " + description + ", вес: " + weight + "г, адрес: " + deliveryAddress + "дата отправки: " + sendDay + "срок годности: "+ timeToLive;
     }
 }
