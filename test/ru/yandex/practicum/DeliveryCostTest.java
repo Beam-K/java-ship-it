@@ -28,6 +28,7 @@ public class DeliveryCostTest {
 
         Assertions.assertEquals(3000, perishableParcelTest.calculateDeliveryCost(), "Неправильно посчитана сумма доставки для скоропортящейся посылки");
     }
+
     @Test
     public void shouldNotExpireBeforeTimeToLive() {
         PerishableParcel perishableParcelTest =
@@ -35,6 +36,7 @@ public class DeliveryCostTest {
 
         Assertions.assertFalse(perishableParcelTest.isExpired(4));
     }
+
     @Test
     public void shouldNotExpireExactlyOnTimeToLive() {
         PerishableParcel perishableParcelTest =

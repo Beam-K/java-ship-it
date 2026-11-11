@@ -27,9 +27,10 @@ public abstract class Parcel {
         return "Посылка: " + description + ", вес: " + weight + "г, адрес: " + deliveryAddress + "дата отправки: " + sendDay;
     }
 
-    public int calculateDeliveryCost(){
+    public int calculateDeliveryCost() {
         return getBaseCost() * weight;
-    };
+    }
+
     abstract int getBaseCost();
 
 }

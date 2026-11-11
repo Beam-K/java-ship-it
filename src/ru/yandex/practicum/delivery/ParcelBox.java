@@ -24,8 +24,6 @@ public class ParcelBox<T extends Parcel> {
         return parcels;
     }
 
-
-
     public int getParcelsCount() {
         return parcels.size();
     }

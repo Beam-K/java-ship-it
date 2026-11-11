@@ -17,11 +17,12 @@ public class PerishableParcel extends Parcel {
     }
 
     @Override
-    public int getBaseCost(){
+    public int getBaseCost() {
         return PERISHABLE_PRICE_PER_KG;
     }
+
     @Override
     public String toString() {
-        return "Посылка: " + description + ", вес: " + weight + "г, адрес: " + deliveryAddress + "дата отправки: " + sendDay + "срок годности: "+ timeToLive;
+        return "Посылка: " + description + ", вес: " + weight + "г, адрес: " + deliveryAddress + "дата отправки: " + sendDay + "срок годности: " + timeToLive;
     }
 }

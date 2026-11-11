@@ -11,8 +11,8 @@ public class DeliveryApp {
     private static List<Trackable> trackableItems = new ArrayList<>();
 
     static ParcelBox<StandardParcel> standardParcelBox = new ParcelBox<>(5000);
-    static ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<FragileParcel>(2000);
-    static ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<PerishableParcel>(10000);
+    static ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<>(2000);
+    static ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<>(10000);
 
     public static void main(String[] args) {
         boolean running = true;
@@ -80,7 +80,7 @@ public class DeliveryApp {
         System.out.println("2 — Скоропортящаяся посылка");
         System.out.println("3 — Хрупкая посылка");
 
-        String typeParcel = scanner.nextLine(); //Здесь
+        String typeParcel = scanner.nextLine(); //Здесь тоже словить InputMismatchException, поэтому поменяла тип переменной typeParcel
 
         switch (typeParcel) {
             case "1":
@@ -156,7 +156,7 @@ public class DeliveryApp {
                 if (standardParcelBox.getAllParcels().isEmpty()) {
                     System.out.println("Коробка пуста");
                 } else {
-                    for(StandardParcel standardParcel: standardParcelBox.getAllParcels()){
+                    for (StandardParcel standardParcel : standardParcelBox.getAllParcels()) {
                         System.out.println(standardParcel.toString());
                     }
                 }
@@ -165,7 +165,7 @@ public class DeliveryApp {
                 if (perishableParcelBox.getAllParcels().isEmpty()) {
                     System.out.println("Коробка пуста");
                 } else {
-                    for(PerishableParcel perishableParcel: perishableParcelBox.getAllParcels()){
+                    for (PerishableParcel perishableParcel : perishableParcelBox.getAllParcels()) {
                         System.out.println(perishableParcel.toString());
                     }
                 }
@@ -174,7 +174,7 @@ public class DeliveryApp {
                 if (fragileParcelBox.getAllParcels().isEmpty()) {
                     System.out.println("Коробка пуста");
                 } else {
-                    for(FragileParcel fragileParcel: fragileParcelBox.getAllParcels()){
+                    for (FragileParcel fragileParcel : fragileParcelBox.getAllParcels()) {
                         System.out.println(fragileParcel.toString());
                     }
                 }
