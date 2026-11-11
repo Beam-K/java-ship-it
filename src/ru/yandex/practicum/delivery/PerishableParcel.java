@@ -21,7 +21,8 @@ public class PerishableParcel extends Parcel {
     }
 
     @Override
-    public int calculateDeliveryCost() {
-        return PERISHABLE_PRICE_PER_KG * weight;
+    public int getBaseCost(){
+        return PERISHABLE_PRICE_PER_KG;
+    }
     }
 }

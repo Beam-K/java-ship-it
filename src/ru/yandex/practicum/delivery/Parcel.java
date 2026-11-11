@@ -22,5 +22,9 @@ public abstract class Parcel {
     }
 
     public abstract int calculateDeliveryCost();
+    public int calculateDeliveryCost(){
+        return getBaseCost() * weight;
+    };
+    abstract int getBaseCost();
 
 }
