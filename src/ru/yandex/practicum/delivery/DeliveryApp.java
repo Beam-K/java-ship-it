@@ -132,10 +132,10 @@ public class DeliveryApp {
 
     private static void displayReportStatus() {
         if (trackableItems != null && !trackableItems.isEmpty()) {
-            for (FragileParcel fragileParcel : trackableItems) {
+            for (Trackable trackable : trackableItems) {
                 System.out.println("Введите новое месторасположения посылки");
                 String userInputNewLocation = scanner.nextLine();
-                fragileParcel.reportStatus(userInputNewLocation);
+                trackable.reportStatus(userInputNewLocation);
             }
         } else {
             System.out.println("У вас нет отслеживаемых посылок");
