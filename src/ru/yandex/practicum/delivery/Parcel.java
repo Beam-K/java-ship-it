@@ -24,7 +24,7 @@ public abstract class Parcel {
 
     @Override
     public String toString() {
-        return "Посылка: " + description + ", вес: " + weight + "г, адрес: " + deliveryAddress + "дата отправки: " + sendDay;
+        return "Посылка: " + description + ", вес: " + weight + "г., адрес: " + deliveryAddress + ", дата отправки: " + sendDay;
     }
 
     public int calculateDeliveryCost() {
