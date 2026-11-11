@@ -8,9 +8,9 @@ public class DeliveryApp {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Parcel> allParcels = new ArrayList<>();
-    private static List<FragileParcel> trackableItems = new ArrayList<>();
+    private static List<Trackable> trackableItems = new ArrayList<>();
 
-    static ParcelBox<StandardParcel> standardParcelBox = new ParcelBox<StandardParcel>(5000);
+    static ParcelBox<StandardParcel> standardParcelBox = new ParcelBox<>(5000);
     static ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<FragileParcel>(2000);
     static ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<PerishableParcel>(10000);
 
@@ -143,26 +143,33 @@ public class DeliveryApp {
 
         int typeBox = Integer.parseInt(scanner.nextLine());
 
+
         switch (typeBox) {
             case 1:
-                if (standardParcelBox.hasParcels) {
-                    standardParcelBox.getAllParcels();
-                } else {
+                if (standardParcelBox.getAllParcels().isEmpty()) {
                     System.out.println("Коробка пуста");
+                } else {
+                    for(StandardParcel standardParcel: standardParcelBox.getAllParcels()){
+                        System.out.println(standardParcel.toString());
+                    }
                 }
                 break;
             case 2:
-                if (perishableParcelBox.hasParcels) {
-                    perishableParcelBox.getAllParcels();
-                } else {
+                if (perishableParcelBox.getAllParcels().isEmpty()) {
                     System.out.println("Коробка пуста");
+                } else {
+                    for(PerishableParcel perishableParcel: perishableParcelBox.getAllParcels()){
+                        System.out.println(perishableParcel.toString());
+                    }
                 }
                 break;
             case 3:
-                if (fragileParcelBox.hasParcels) {
-                    fragileParcelBox.getAllParcels();
-                } else {
+                if (fragileParcelBox.getAllParcels().isEmpty()) {
                     System.out.println("Коробка пуста");
+                } else {
+                    for(FragileParcel fragileParcel: fragileParcelBox.getAllParcels()){
+                        System.out.println(fragileParcel.toString());
+                    }
                 }
                 break;
             default:
