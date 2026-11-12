@@ -13,7 +13,7 @@ public class PerishableParcel extends Parcel {
 
     public boolean isExpired(int currentDay) {
 
-        return currentDay >= sendDay + timeToLive;
+        return currentDay > sendDay + timeToLive; //
     }
 
     @Override
@@ -23,6 +23,6 @@ public class PerishableParcel extends Parcel {
 
     @Override
     public String toString() {
-        return "Посылка: " + description + ", вес: " + weight + "г, адрес: " + deliveryAddress + "дата отправки: " + sendDay + "срок годности: " + timeToLive;
+        return "Посылка: " + description + ", вес: " + weight + "г, адрес: " + deliveryAddress + " дата отправки: " + sendDay + " срок годности: " + timeToLive;
     }
 }

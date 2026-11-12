@@ -30,27 +30,27 @@ public class DeliveryCostTest {
     }
 
     @Test
-    public void shouldNotExpireBeforeTimeToLive() {
+    public void shouldNotExpireOnLastValidDay() {
         PerishableParcel perishableParcelTest =
                 new PerishableParcel("Бабушкины котлеты", 1000, "Веры Волошиной, 54", 1, 5);
 
-        Assertions.assertFalse(perishableParcelTest.isExpired(4));
+        Assertions.assertFalse(perishableParcelTest.isExpired(6));
     }
 
     @Test
-    public void shouldNotExpireExactlyOnTimeToLive() {
+    public void shouldExpireOnFirstExpiredDay() {
         PerishableParcel perishableParcelTest =
                 new PerishableParcel("Бабушкины котлеты", 1000, "Веры Волошиной, 54", 1, 5);
 
-        Assertions.assertFalse(perishableParcelTest.isExpired(5));
+        Assertions.assertTrue(perishableParcelTest.isExpired(7));
     }
 
     @Test
-    public void shouldExpireAfterTimeToLive() {
+    public void shouldExpireOneDayAfterExpiry() {
         PerishableParcel perishableParcelTest =
                 new PerishableParcel("Бабушкины котлеты", 1000, "Веры Волошиной, 54", 1, 5);
 
-        Assertions.assertTrue(perishableParcelTest.isExpired(6));
+        Assertions.assertTrue(perishableParcelTest.isExpired(8));
     }
 
     @Test
